@@ -1,6 +1,16 @@
 <script>
-	let name = 'Pabs';
+	let firstName = 'Pabs';
+	let lastName = 'Kinator';
 	let armColor = 'Black'
+
+	// reactive values
+	$: fullName = `${firstName} ${lastName}`;
+
+	// reactive statement
+	$: {
+		console.log(armColor);
+		console.log(fullName);
+	}
 
 	const handleClick = () => {
 		armColor = 'pink';
@@ -12,11 +22,10 @@
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p style="color: {armColor}">{armColor} arm</p>
+	<p style="color: {armColor}">{fullName} - {armColor} arm</p>
 
-	<button on:click={handleClick}>Update arm color</button>
-<!--	<input type="text" on:input={handleInput} value="{armColor}">-->
+	<input type="text" bind:value={firstName}>
+	<input type="text" bind:value={lastName}>
 	<input type="text" bind:value={armColor}>
 </main>
 
