@@ -1,32 +1,20 @@
 <script>
-	let firstName = 'Pabs';
-	let lastName = 'Kinator';
-	let armColor = 'Black'
-
-	// reactive values
-	$: fullName = `${firstName} ${lastName}`;
-
-	// reactive statement
-	$: {
-		console.log(armColor);
-		console.log(fullName);
-	}
-
-	const handleClick = () => {
-		armColor = 'pink';
-	};
-
-	const handleInput = (e) => {
-		armColor = e.target.value;
-	};
+let people = [
+	{ name: 'yoshi', armColor: 'black', age: 25, id: 1 },
+	{ name: 'mario', armColor: 'orange', age: 45, id: 2 },
+	{ name: 'luigi', armColor: 'brown', age: 35, id: 3 }
+];
 </script>
 
 <main>
-	<p style="color: {armColor}">{fullName} - {armColor} arm</p>
-
-	<input type="text" bind:value={firstName}>
-	<input type="text" bind:value={lastName}>
-	<input type="text" bind:value={armColor}>
+	{#each people as person (person.id)}
+		<div>
+			<h4>{person.name}</h4>
+			<p>{person.age} years old, {person.armColor} arm</p>
+		</div>
+	{:else}
+		<p>There are no people to show...</p>
+	{/each}
 </main>
 
 <style>
