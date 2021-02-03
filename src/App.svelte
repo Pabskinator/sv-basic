@@ -4,6 +4,11 @@ let people = [
 	{ name: 'mario', armColor: 'orange', age: 45, id: 2 },
 	{ name: 'luigi', armColor: 'brown', age: 35, id: 3 }
 ];
+
+const deletePerson = (event, id) => {
+	console.log(event);
+	people = people.filter((person) => person.id !== id);
+}
 </script>
 
 <main>
@@ -11,6 +16,7 @@ let people = [
 		<div>
 			<h4>{person.name}</h4>
 			<p>{person.age} years old, {person.armColor} arm</p>
+			<button on:click={(e) => deletePerson(e, person.id)}>delete</button>
 		</div>
 	{:else}
 		<p>There are no people to show...</p>
