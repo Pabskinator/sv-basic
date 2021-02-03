@@ -1,12 +1,13 @@
 <script>
+    export let message = 'default value';
+    export let isPromo = false;
     let show = true;
-    let isPromo = false;
 </script>
 
 {#if show}
     <div class="backdrop" class:promo={isPromo}>
         <div class="modal">
-            <p>Sign up for offers</p>
+            <p>{message}</p>
         </div>
     </div>
 {/if}
@@ -21,15 +22,15 @@
 
     .modal {
         padding: 10px;
-        border-radius: 10px;
         max-width: 400px;
         margin: 10% auto;
-        text-align: center;
         background: white;
+        text-align: center;
+        border-radius: 10px;
     }
 
     .promo .modal{
-        background: crimson;
         color: white;
+        background: crimson;
     }
 </style>
