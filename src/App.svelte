@@ -1,10 +1,23 @@
 <script>
-	export let name;
+	let name = 'Pabs';
+	let armColor = 'Black'
+
+	const handleClick = () => {
+		armColor = 'pink';
+	};
+
+	const handleInput = (e) => {
+		armColor = e.target.value;
+	};
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<p>Hello droids!</p>
+	<p style="color: {armColor}">{armColor} arm</p>
+
+	<button on:click={handleClick}>Update arm color</button>
+<!--	<input type="text" on:input={handleInput} value="{armColor}">-->
+	<input type="text" bind:value={armColor}>
 </main>
 
 <style>
