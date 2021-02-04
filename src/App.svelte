@@ -4,9 +4,9 @@ import AddPersonForm from './addPersonForm.svelte';
 
 let showModal = false;
 let people = [
-	{ name: 'yoshi', armColor: 'black', age: 25, id: 1 },
-	{ name: 'mario', armColor: 'orange', age: 45, id: 2 },
-	{ name: 'luigi', armColor: 'brown', age: 35, id: 3 }
+	{ name: 'yoshi', armColor: 'black', age: 25, id: 1, skills: ['eating'] },
+	{ name: 'mario', armColor: 'orange', age: 45, id: 2, skills: ['walking'] },
+	{ name: 'luigi', armColor: 'brown', age: 35, id: 3, skills: ['seeing'] }
 ];
 
 const deletePerson = (event, id) => {
@@ -18,12 +18,18 @@ const toggleModal = () => {
 	showModal = !showModal;
 }
 
+const addPerson = (e) => {
+	const person = e.detail
+	people = [person, ...people];
+	showModal = false;
+}
+
 let num = 5;
 
 </script>
 
 <Modal {showModal} on:click={toggleModal}>
-	<AddPersonForm/>
+	<AddPersonForm on:addPerson={addPerson} />
 </Modal>
 
 <main>
@@ -36,6 +42,10 @@ let num = 5;
 				<p><strong>Master Android!</strong></p>
 			{/if}
 			<p>{person.age} years old, {person.armColor} arm</p>
+			<label>Skills:</label>
+			{#each person.skills as skill}
+				<div>{skill}</div>
+			{/each}
 			<button on:click={(e) => deletePerson(e, person.id)}>delete</button>
 		</div>
 	{:else}
