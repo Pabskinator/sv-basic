@@ -21,7 +21,14 @@ let num = 5;
 
 </script>
 
-<Modal message="Hey, I am a prop value" {showModal} on:click={toggleModal} />
+<Modal {showModal} on:click={toggleModal}>
+	<h3>Add a New Person</h3>
+	<form action="">
+		<input type="text" placeholder="name">
+		<input type="text" placeholder="arm color">
+		<button>Add Person</button>
+	</form>
+</Modal>
 
 <main>
 	<button on:click={toggleModal}>Open Modal</button>
